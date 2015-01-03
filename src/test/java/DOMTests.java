@@ -64,13 +64,6 @@ public class DOMTests {
 
         assertEquals(nodeRes.get(1).get(TagName), "1");
         assertEquals(nodeRes.get(2).get(TagName), "2");
-
-//        for (Integer t : nodeRes.keySet()){
-//            System.out.println("第 "+t+"个book结点：");
-//            for (String s : nodeRes.get(t).keySet()){
-//                System.out.println("属性名："+s+" 属性值："+nodeRes.get(t).get(s));
-//            }
-//        }
     }
 
     /**
@@ -87,7 +80,5 @@ public class DOMTests {
                 System.out.println("属性名："+s+" 属性值："+nodeRes.get(t).get(s));
             }
         }
-
     }
-
 }
