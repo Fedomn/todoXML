@@ -82,4 +82,28 @@ public class DOMTodoXML {
             nodeMap.put(i+1, propertyMap);
         }
     }
+
+    //得到子节点
+    public void getChildNode(String nodeName){
+        NodeList nodeList = getNodeList(nodeName);
+        for (int i=0; i<nodeList.getLength(); i++){
+            Node node = nodeList.item(i);
+            NodeList childNodes = node.getChildNodes();
+            System.out.println("第"+(i+1)+"本书：");
+            for (int j=0; j<childNodes.getLength(); j++){
+                if (childNodes.item(j).getNodeType() == Node.ELEMENT_NODE){
+                    Node child = childNodes.item(j);
+                    System.out.print("节点名：" + child.getNodeName());
+                    System.out.println("节点值：" + child.getFirstChild().getNodeValue());
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
+        DOMTodoXML domTodoXML = new DOMTodoXML("src/main/resources/books.xml");
+        domTodoXML.getChildNode("book");
+    }
+
+
 }
