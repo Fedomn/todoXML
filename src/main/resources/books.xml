@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+	<book id="001">
+		<name>设计模式</name>
+		<author>Martin Flower</author>
+		<year>2000</year>
+		<price>58</price>
+	</book>
+	<book id="002">
+		<name>重构</name>
+		<author>Martin Flower</author>
+		<year>2000</year>
+		<price>50</price>
+		<language>English</language>
+	</book>
+	<book id="003">
+		<name>JUnit</name>
+		<author>Martin Flower</author>
+		<year>2001</year>
+		<price>30</price>
+		<language>Chinese</language>
+	</book>
+</bookstore>
