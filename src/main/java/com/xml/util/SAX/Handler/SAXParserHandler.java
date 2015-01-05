@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class SAXParserHandler extends DefaultHandler{
 
-    private int bookindex = 0;
+    private int bookIndex = 0;
 
     private String value = null;
 
@@ -47,9 +47,9 @@ public class SAXParserHandler extends DefaultHandler{
         super.startElement(uri, localName, qName, attributes);
         //开始解析book元素属性
         if (qName.equals("book")){
-            bookindex++;
+            bookIndex++;
             book = new Book();
-            System.out.println("开始遍历第" + bookindex +"本书");
+            System.out.println("开始遍历第" + bookIndex +"本书");
 //            //已知book元素属性名称，根据属性名称获取属性值
 //            String val = attributes.getValue("id");
 //            System.out.println("book的属性值："+val);
@@ -79,7 +79,7 @@ public class SAXParserHandler extends DefaultHandler{
         if (qName.equals("book")){
             bookList.add(book);
             book = null;
-            System.out.println("结束遍历第" + bookindex +"本书");
+            System.out.println("结束遍历第" + bookIndex +"本书");
         }else if (qName.equals("name")){
             book.setName(value);
         }else if (qName.equals("author")){

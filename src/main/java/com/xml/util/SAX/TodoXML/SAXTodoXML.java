@@ -25,8 +25,10 @@ public final class SAXTodoXML {
             SAXParserHandler handler = new SAXParserHandler();
             saxParser.parse(xmlUrl, handler);
 
+            System.out.println("------------分析bookList----------------");
             for (Book book : handler.getBookList()){
                 System.out.println(book.getId());
+                System.out.println(book.getName());
                 System.out.println(book.getAuthor());
                 System.out.println(book.getYear());
                 System.out.println(book.getPrice());
@@ -44,7 +46,6 @@ public final class SAXTodoXML {
 
     public static void main(String[] args) {
         ReadXml("src/main/resources/books.xml");
-
     }
 
 }
