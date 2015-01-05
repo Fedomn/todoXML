@@ -1,4 +1,4 @@
-package com.xml.util;
+package com.xml.util.DOM;
 
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
@@ -157,9 +157,6 @@ public final class DOMTodoXML {
 
     public static void main(String[] args){
         ReadXml("src/main/resources/books.xml");
-        WriteXml("src/main/resources/Create_books.xml");
+        WriteXml("src/main/resources/DOMCreate_books.xml");
     }
-
-
-
 }
