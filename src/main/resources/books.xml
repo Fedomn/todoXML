@@ -16,7 +16,6 @@
 	<book id="003">
 		<name>UML</name>
 		<author>Martin Flower</author>
-		<year>2001</year>
 		<price>30</price>
 		<language>Chinese</language>
 	</book>
