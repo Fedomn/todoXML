@@ -1,7 +1,7 @@
-package com.xml.util.Controllers.JDOM;
+package com.xml.Controllers.JDOM;
 
-import com.xml.util.Entity.Book;
-import com.xml.util.Entity.Bookstore;
+import com.xml.Entity.Book;
+import com.xml.Entity.Bookstore;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;

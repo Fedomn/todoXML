@@ -1,7 +1,7 @@
-package com.xml.util.Controllers.SAX.TodoXML;
+package com.xml.Controllers.SAX.TodoXML;
 
-import com.xml.util.Entity.Book;
-import com.xml.util.Controllers.SAX.Handler.SAXParserHandler;
+import com.xml.Entity.Book;
+import com.xml.Controllers.SAX.Handler.SAXParserHandler;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -27,12 +27,12 @@ public final class SAXTodoXML {
 
             System.out.println("------------分析bookList----------------");
             for (Book book : handler.getBookList()){
-                System.out.println(book.getId());
-                System.out.println(book.getName());
-                System.out.println(book.getAuthor());
-                System.out.println(book.getYear());
-                System.out.println(book.getPrice());
-                System.out.println(book.getLanguage());
+//                System.out.println(book.getId());
+//                System.out.println(book.getName());
+//                System.out.println(book.getAuthor());
+//                System.out.println(book.getYear());
+//                System.out.println(book.getPrice());
+//                System.out.println(book.getLanguage());
                 System.out.println("----------------------------");
             }
         } catch (ParserConfigurationException e) {

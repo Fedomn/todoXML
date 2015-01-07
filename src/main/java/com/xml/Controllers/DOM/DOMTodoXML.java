@@ -1,4 +1,4 @@
-package com.xml.util.Controllers.DOM;
+package com.xml.Controllers.DOM;
 
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;

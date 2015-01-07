@@ -1,5 +1,6 @@
-package com.xml.util.Controllers.DOM4J;
+package com.xml.Controllers.DOM4J;
 
+import com.xml.Entity.Book;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class DOM4JTodoXML {
 
-    public static void ReadXml(String xmlUrl) {
+    public static void ReadXml(String xmlUrl, List<Book> bookList) {
         try {
             SAXReader saxReader = new SAXReader();
             //通过saxReader的read方法加载XML
@@ -24,20 +25,33 @@ public class DOM4JTodoXML {
             //遍历迭代器
             while (it.hasNext()) {
                 Element book = (Element) it.next();
+                Book bookTemp = new Book();
                 //获取book属性
                 List<Attribute> bookAttrs = book.attributes();
                 for (Attribute attr : bookAttrs) {
-                    attr.getName();
-                    attr.getValue();
+                    if (attr.getName() == "id") {
+                        bookTemp.setId(attr.getValue());
+                    }
                 }
                 Iterator itChild = book.elementIterator();
                 while (itChild.hasNext()){
                     Element bookChild = (Element)itChild.next();
-                    bookChild.getName();
-                    bookChild.getStringValue();
+                    String childName = bookChild.getName();
+                    String childValue = bookChild.getStringValue();
+                    if (childName == "name") {
+                        bookTemp.setName(childValue);
+                    }else if (childName == "author"){
+                        bookTemp.setAuthor(childValue);
+                    }else if (childName == "year"){
+                        bookTemp.setYear(childValue);
+                    }else if (childName == "price"){
+                        bookTemp.setPrice(childValue);
+                    }else if (childName == "language"){
+                        bookTemp.setLanguage(childValue);
+                    }
                 }
+                bookList.add(bookTemp);
             }
-
         } catch (DocumentException e) {
             e.printStackTrace();
         }
