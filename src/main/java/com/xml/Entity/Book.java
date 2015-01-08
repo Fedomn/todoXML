@@ -20,6 +20,30 @@ public class Book {
         this.language = language;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
     public void setId(String id) {
         this.id = id;
     }

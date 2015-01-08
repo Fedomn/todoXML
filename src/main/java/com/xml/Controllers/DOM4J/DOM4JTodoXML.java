@@ -1,13 +1,12 @@
 package com.xml.Controllers.DOM4J;
 
 import com.xml.Entity.Book;
-import org.dom4j.Attribute;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Element;
+import org.dom4j.*;
+import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
+import org.dom4j.io.XMLWriter;
 
-import java.io.File;
+import java.io.*;
 import java.util.Iterator;
 import java.util.List;
 
@@ -57,5 +56,40 @@ public final class DOM4JTodoXML {
         }
     }
 
+    public static void WriteXml(String xmlUrl){
+        //创建document代表整个XML文档
+        Document document = DocumentHelper.createDocument();
+        Element bookstore = document.addElement("bookstore");
+
+        Element book = bookstore.addElement("book");
+        book.addAttribute("ID", "001");
+
+        Element name = book.addElement("name");
+        name.setText("分析模式");
+        Element author = book.addElement("author");
+        author.setText("Martin Flower");
+        Element year = book.addElement("year");
+        year.setText("2000");
+        Element price = book.addElement("price");
+        price.setText("100");
+
+        OutputFormat format = OutputFormat.createPrettyPrint();
+        format.setEncoding("UTF-8");
+        File file = new File(xmlUrl);
+
+        try {
+            XMLWriter writer = new XMLWriter(new FileOutputStream(file), format);
+            //设置不转义
+            writer.setEscapeText(false);
+            writer.write(document);
+            writer.close();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
