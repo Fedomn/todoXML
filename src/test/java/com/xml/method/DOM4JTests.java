@@ -32,10 +32,15 @@ public class DOM4JTests {
     }
 
     @Test
-    public void DOM4JTest(){
+    public void DOM4JReadTest(){
         DOM4JTodoXML.ReadXml("src/main/resources/books.xml", bookList2);
 
         assertEquals(bookList1, bookList2);
+    }
+
+    @Test
+    public void DOM4JWriteTest(){
+        DOM4JTodoXML.WriteXml("src/main/resources/DOM4J.xml");
     }
 
 

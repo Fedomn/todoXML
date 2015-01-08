@@ -7,7 +7,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 public class BookstoreTests {
 
@@ -38,8 +40,13 @@ public class BookstoreTests {
     @Test
     public void bookTest(){
         assertEquals(book1, book1Back);
+
         assertEquals(book1, book2);
+
+        assertThat(book1.getId(), is("001"));
     }
+
+
 
     @Test
     public void bookstoreTest(){
