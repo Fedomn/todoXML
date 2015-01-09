@@ -2,7 +2,7 @@ package com.xml.Entity;
 
 import java.util.ArrayList;
 
-public class Bookstore {
+public class BookStore {
 
     private ArrayList<Book> booksList = new ArrayList<Book>();
 
@@ -17,10 +17,10 @@ public class Bookstore {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Bookstore)) return false;
+        if (!(o instanceof BookStore)) return false;
 
-        Bookstore bookstore = (Bookstore) o;
-        ArrayList<Book> bookList = bookstore.getBooksList();
+        BookStore bookStore = (BookStore) o;
+        ArrayList<Book> bookList = bookStore.getBooksList();
 
         for(Book book : bookList){
             if (!book.equals(o)) return false;
