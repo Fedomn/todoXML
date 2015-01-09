@@ -1,7 +1,7 @@
 package com.xml.Controllers.JDOM;
 
 import com.xml.Entity.Book;
-import com.xml.Entity.Bookstore;
+import com.xml.Entity.BookStore;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -25,7 +25,7 @@ public final class JDOMTodoXML {
             Element rootElement = document.getRootElement();
             //获取根节点下的子节点的list集合
             List<Element> bookList = rootElement.getChildren();
-            Bookstore bookstore = new Bookstore();
+            BookStore bookStore = new BookStore();
             for (Element book : bookList) {
                 Book bookEntity = new Book();
 
@@ -61,7 +61,7 @@ public final class JDOMTodoXML {
                         bookEntity.setLanguage(childValue);
                     }
                 }
-                bookstore.setBook(bookEntity);
+                bookStore.setBook(bookEntity);
                 System.out.println("-----结束解析第" + bookList.indexOf(book) + "本书-----");
             }
 

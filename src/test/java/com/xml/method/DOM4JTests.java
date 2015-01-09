@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -33,7 +34,8 @@ public class DOM4JTests {
 
     @Test
     public void DOM4JReadTest(){
-        DOM4JTodoXML.ReadXml("src/main/resources/books.xml", bookList2);
+        List<Book> resultBookStore = new ArrayList<Book>();
+        DOM4JTodoXML.ReadXml("src/main/resources/books.xml", resultBookStore);
 
         assertEquals(bookList1, bookList2);
     }
