@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class BookStore {
 
-    private ArrayList<Book> booksList = new ArrayList<Book>();
+    private ArrayList<Book> bookStore = new ArrayList<Book>();
 
     public void setBook(Book book){
-        booksList.add(book);
+        bookStore.add(book);
     }
 
-    public ArrayList<Book> getBooksList(){
-        return booksList;
+    public ArrayList<Book> getBookStore(){
+        return bookStore;
     }
 
     @Override
@@ -20,7 +20,7 @@ public class BookStore {
         if (!(o instanceof BookStore)) return false;
 
         BookStore bookStore = (BookStore) o;
-        ArrayList<Book> bookList = bookStore.getBooksList();
+        ArrayList<Book> bookList = bookStore.getBookStore();
 
         for(Book book : bookList){
             if (!book.equals(o)) return false;
@@ -32,7 +32,7 @@ public class BookStore {
     @Override
     public int hashCode() {
         int result = 31;
-        for (Book book : booksList){
+        for (Book book : bookStore){
             result += book.hashCode();
         }
         return result;
