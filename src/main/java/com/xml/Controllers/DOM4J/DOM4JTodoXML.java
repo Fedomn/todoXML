@@ -7,71 +7,87 @@ import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public final class DOM4JTodoXML {
 
-    public static void ReadXml(String xmlUrl, List<Book> bookList) {
+    public static List<Book> ReadXml(String xmlUrl) {
+        List<Book> bookStore = new ArrayList<Book>();
         try {
             SAXReader saxReader = new SAXReader();
             //通过saxReader的read方法加载XML
             Document document = saxReader.read(new File(xmlUrl));
             //获取根节点
-            Element bookStore = document.getRootElement();
+            Element bookStoreNode = document.getRootElement();
             //获取迭代器
-            Iterator it = bookStore.elementIterator();
+            Iterator it = bookStoreNode.elementIterator();
             //遍历迭代器
             while (it.hasNext()) {
-                Element book = (Element) it.next();
-                Book bookTemp = new Book();
+                Element bookNode = (Element) it.next();
+                Book book = new Book();
                 //获取book属性
-                List<Attribute> bookAttrs = book.attributes();
+                List<Attribute> bookAttrs = bookNode.attributes();
                 for (Attribute attr : bookAttrs) {
                     if (attr.getName() == "id") {
-                        bookTemp.setId(attr.getValue());
+                        book.setId(attr.getValue());
                     }
                 }
-                Iterator itChild = book.elementIterator();
+                Iterator itChild = bookNode.elementIterator();
                 while (itChild.hasNext()){
-                    Element bookChild = (Element)itChild.next();
-                    String childName = bookChild.getName();
-                    String childValue = bookChild.getStringValue();
+                    Element bookNodeChild = (Element)itChild.next();
+                    String childName = bookNodeChild.getName();
+                    String childValue = bookNodeChild.getStringValue();
                     if (childName == "name") {
-                        bookTemp.setName(childValue);
+                        book.setName(childValue);
                     }else if (childName == "author"){
-                        bookTemp.setAuthor(childValue);
+                        book.setAuthor(childValue);
                     }else if (childName == "year"){
-                        bookTemp.setYear(childValue);
+                        book.setYear(childValue);
                     }else if (childName == "price"){
-                        bookTemp.setPrice(childValue);
+                        book.setPrice(childValue);
                     }else if (childName == "language"){
-                        bookTemp.setLanguage(childValue);
+                        book.setLanguage(childValue);
                     }
                 }
-                bookList.add(bookTemp);
+                bookStore.add(book);
             }
         } catch (DocumentException e) {
             e.printStackTrace();
         }
+        return bookStore;
     }
 
-    public static void WriteXml(String xmlUrl){
+    public static void WriteXml(String xmlUrl, List<Book> bookStore){
         //创建document代表整个XML文档
         Document document = DocumentHelper.createDocument();
-        Element bookstore = document.addElement("bookstore");
+        Element bookStoreNode = document.addElement("bookstore");
 
-        Element book = bookstore.addElement("book");
-        book.addAttribute("ID", "001");
-
-        Element name = book.addElement("name");
-        name.setText("分析模式");
-        Element author = book.addElement("author");
-        author.setText("Martin Flower");
-        Element year = book.addElement("year");
-        year.setText("2000");
-        Element price = book.addElement("price");
-        price.setText("100");
+        for (Book book : bookStore){
+            Element bookNode = bookStoreNode.addElement("book");
+            bookNode.addAttribute("id", book.getId());
+            if (book.getName() != ""){
+                Element name = bookNode.addElement("name");
+                name.setText(book.getName());
+            }
+            if (book.getAuthor() != ""){
+                Element author = bookNode.addElement("author");
+                author.setText(book.getAuthor());
+            }
+            if (book.getYear() != ""){
+                Element year = bookNode.addElement("year");
+                year.setText(book.getYear());
+            }
+            if (book.getPrice() != ""){
+                Element price = bookNode.addElement("price");
+                price.setText(book.getPrice());
+            }
+            if (book.getLanguage() != ""){
+                Element language = bookNode.addElement("language");
+                language.setText(book.getLanguage());
+            }
+        }
 
         OutputFormat format = OutputFormat.createPrettyPrint();
         format.setEncoding("UTF-8");
