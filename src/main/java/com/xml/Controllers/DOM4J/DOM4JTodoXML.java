@@ -13,12 +13,12 @@ import java.util.List;
 
 public final class DOM4JTodoXML {
 
-    public static List<Book> ReadXml(String xmlUrl) {
+    public static List<Book> ReadXml(String readXmlUrl) {
         List<Book> bookStore = new ArrayList<Book>();
         try {
             SAXReader saxReader = new SAXReader();
             //通过saxReader的read方法加载XML
-            Document document = saxReader.read(new File(xmlUrl));
+            Document document = saxReader.read(new File(readXmlUrl));
             //获取根节点
             Element bookStoreNode = document.getRootElement();
             //获取迭代器
