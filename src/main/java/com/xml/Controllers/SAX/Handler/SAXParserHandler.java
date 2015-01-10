@@ -15,10 +15,10 @@ public class SAXParserHandler extends DefaultHandler{
 
     private Book book = null;
 
-    private ArrayList<Book> bookList = new ArrayList<Book>();
+    private ArrayList<Book> bookStore = new ArrayList<Book>();
 
-    public ArrayList<Book> getBookList() {
-        return bookList;
+    public ArrayList<Book> getBookStore() {
+        return bookStore;
     }
 
     /**
@@ -77,7 +77,7 @@ public class SAXParserHandler extends DefaultHandler{
         super.endElement(uri, localName, qName);
         //判断book是否结束
         if (qName.equals("book")){
-            bookList.add(book);
+            bookStore.add(book);
             book = null;
             System.out.println("结束遍历第" + bookIndex +"本书");
         }else if (qName.equals("name")){

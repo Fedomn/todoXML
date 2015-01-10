@@ -26,7 +26,7 @@ public final class SAXTodoXML {
             saxParser.parse(xmlUrl, handler);
 
             System.out.println("------------分析bookList----------------");
-            for (Book book : handler.getBookList()){
+            for (Book book : handler.getBookStore()){
 //                System.out.println(book.getId());
 //                System.out.println(book.getName());
 //                System.out.println(book.getAuthor());
