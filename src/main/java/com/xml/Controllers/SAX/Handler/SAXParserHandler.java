@@ -1,6 +1,8 @@
 package com.xml.Controllers.SAX.Handler;
 
 import com.xml.Entity.Book;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -8,6 +10,8 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.util.ArrayList;
 
 public class SAXParserHandler extends DefaultHandler{
+
+    private static Logger logger = Logger.getLogger(SAXParserHandler.class.getClass());
 
     private int bookIndex = 0;
 
@@ -21,13 +25,17 @@ public class SAXParserHandler extends DefaultHandler{
         return bookStore;
     }
 
+    static {
+        PropertyConfigurator.configure("src/main/resources/log4j.properties");
+    }
+
     /**
      * 用来标志解析开始
      */
     @Override
     public void startDocument() throws SAXException {
         super.startDocument();
-        System.out.println("-----SAX解析开始-----");
+        logger.info("-----SAX解析开始-----");
     }
 
     /**
@@ -36,7 +44,7 @@ public class SAXParserHandler extends DefaultHandler{
     @Override
     public void endDocument() throws SAXException {
         super.endDocument();
-        System.out.println("-----SAX解析结束-----");
+        logger.info("-----SAX解析结束-----");
     }
 
     /**
@@ -49,23 +57,23 @@ public class SAXParserHandler extends DefaultHandler{
         if (qName.equals("book")){
             bookIndex++;
             book = new Book();
-            System.out.println("开始遍历第" + bookIndex +"本书");
+            logger.info("开始遍历第" + bookIndex + "本书");
 //            //已知book元素属性名称，根据属性名称获取属性值
 //            String val = attributes.getValue("id");
-//            System.out.println("book的属性值："+val);
+//            logger.info("book的属性值："+val);
 
 
             //不知道book元素下属性名称和个数
             int valNum = attributes.getLength();
             for (int i=0; i<valNum; i++){
                 System.out.print("book元素的第" + (i + 1) + "个属性名：" + attributes.getQName(i));
-                System.out.println(" 属性值："+attributes.getValue(i));
+                logger.info(" 属性值：" + attributes.getValue(i));
                 if (attributes.getQName(i).equals("id")){
                     book.setId(attributes.getValue(i));
                 }
             }
         }else if (!qName.equals("book") && !qName.equals("bookstore")){
-            System.out.print("结点名是：" + qName + " ");
+            logger.info("结点名是：" + qName + " ");
         }
     }
 
@@ -79,7 +87,7 @@ public class SAXParserHandler extends DefaultHandler{
         if (qName.equals("book")){
             bookStore.add(book);
             book = null;
-            System.out.println("结束遍历第" + bookIndex +"本书");
+            logger.info("结束遍历第" + bookIndex + "本书");
         }else if (qName.equals("name")){
             book.setName(value);
         }else if (qName.equals("author")){
@@ -101,6 +109,6 @@ public class SAXParserHandler extends DefaultHandler{
         super.characters(ch, start, length);
         value = new String(ch, start, length);
         if (!value.trim().equals(""))
-            System.out.println("结点值是：" + value);
+            logger.info("结点值是：" + value);
     }
 }
